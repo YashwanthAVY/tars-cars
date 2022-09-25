@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Email Subscription Form</title>
+        <link rel="stylesheet" href="css/subscribe.css">
+    </head>
+    <body>
+        <div class="newsletter">
+            <h1>Get Newsletter</h1>
+            <hr>
+            <p>
+                Enter your email-id in the box below to recieve 
+                ew3lusive offers and tips for maintainance
+            </p>
+                <form>
+                    <input type="email" placeholder="Email" id="email" required>
+                    <br>
+                    <button type="submit" button id="btn">Submit Now</button>
+                </form>
+        </div>
+        <script>
+            let emails = []
+            const addEmail = (ev)=>{
+                ev.preventDefault();
+                let email = {
+                    id: Date.now(),
+                    email: document.getElementById('email').value,
+                }
+                emails.push(email);
+                document.forms[0].reset(); //to clear the form for the next entries
+                // document.querySelector('form').reset();
+
+                //for displaying purposes
+                console.warn('added', {emails} );
+                let pre = document.querySelector('#msg pre');
+                // pre.textContent = '\n' + JSON.stringify(emails, '\t', 1);
+
+                //saving to localStorage
+                localStorage.setItem('MyEmaiList', JSON.stringify(emails) );
+            }
+            document.addEventListener('DOMContentLoaded', ()=>{
+                document.getElementById('btn').addEventListener('click', addEmail);
+            });            
+        </script>
+    </body>
+   
+</html>
